@@ -1,0 +1,85 @@
+:root {
+  --bg: #f7f7f7;
+  --text: #222;
+  --border: #ccc;
+  --button-bg: #ffffff;
+  --button-hover: #eeeeee;
+  --link: #0066cc;
+  --textarea-bg: #ffffff;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #eaeaea;
+  --border: #333;
+  --button-bg: #1e1e1e;
+  --button-hover: #2a2a2a;
+  --link: #4ea1ff;
+  --textarea-bg: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: 0.2s ease;
+}
+
+h1, h2, p {
+  margin: 12px 0;
+}
+
+button {
+  margin: 4px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: var(--button-bg);
+  color: var(--text);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--textarea-bg);
+  color: var(--text);
+  font-family: monospace;
+  font-size: 14px;
+  resize: vertical;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  button {
+    width: 100%;
+    margin: 6px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 20px; }
+  h2 { font-size: 16px; }
+}

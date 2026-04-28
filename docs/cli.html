@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel2LaTeX CLI</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div>
+  <button onclick="setLang('ja')">日本語</button>
+  <button onclick="setLang('en')">English</button>
+
+  <button onclick="toggleDark()"> ☆ Dark Mode</button>
+</div>
+
+<h1 data-ja="CLI版の使い方" data-en="CLI Usage"></h1>
+
+<p data-ja="PythonでExcel表をLaTeXに変換"
+   data-en="Convert Excel tables using Python"></p>
+
+<h2 data-ja="実行" data-en="Run"></h2>
+
+<pre>
+python excel2latex.py input.txt
+</pre>
+
+<h2 data-ja="注意" data-en="Notes"></h2>
+
+<ul>
+  <li data-ja="タブ区切りのみ対応" data-en="Only tab-separated input"></li>
+  <li data-ja="結合セル非対応" data-en="Merged cells not supported"></li>
+</ul>
+
+<a href="./index.html"
+   data-ja="Web版へ戻る"
+   data-en="Back to Web">
+  Web版へ戻る
+</a>
+
+<script>
+let lang = "ja";
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll("[data-ja]").forEach(el => {
+    el.textContent = el.getAttribute("data-" + lang);
+  });
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "dark",
+    document.body.classList.contains("dark") ? "1" : "0"
+  );
+}
+
+if (localStorage.getItem("dark") === "1") {
+  document.body.classList.add("dark");
+}
+
+setLang("ja");
+</script>
+
+</body>
+</html>

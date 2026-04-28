@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel to LaTeX</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div>
+  <button onclick="setLang('ja')">日本語</button>
+  <button onclick="setLang('en')">English</button>
+
+  <button onclick="toggleDark()"> ☆ Dark Mode</button>
+</div>
+
+<h1 data-ja="Excel → LaTeX 変換ツール" data-en="Excel to LaTeX Converter"></h1>
+
+<p data-ja="Excelの表を貼り付けてLaTeXに変換します"
+   data-en="Paste Excel table and convert to LaTeX"></p>
+
+<h2 data-ja="入力" data-en="Input"></h2>
+
+<textarea id="input"
+  placeholder="Paste from Excel"
+  data-ja-placeholder="Excelから貼り付け"
+  data-en-placeholder="Paste from Excel">
+</textarea>
+
+<label>
+  <input type="checkbox" id="useHline" checked>
+  <span data-ja="hlineを使う" data-en="Use \hline">
+    Use \hline
+  </span>
+</label>
+
+<button id="convertBtn" data-ja="変換" data-en="Convert">
+  Convert
+</button>
+
+<button id="copyBtn" data-ja="コピー" data-en="Copy">
+  Copy
+</button>
+
+<h2 data-ja="出力" data-en="Output"></h2>
+
+<textarea id="output"
+  readonly
+  placeholder="LaTeX output will appear here"
+  data-ja-placeholder="ここにLaTeXが表示されます"
+  data-en-placeholder="LaTeX output will appear here">
+</textarea>
+
+<hr>
+
+<a href="./cli.html"
+   data-ja="CLI版はこちら"
+   data-en="Go to CLI version">
+  CLI version
+</a>
+
+<script src="script.js"></script>
+
+<script>
+let lang = "ja";
+
+function setLang(l) {
+  lang = l;
+
+  document.querySelectorAll("[data-ja]").forEach(el => {
+    el.textContent = el.getAttribute("data-" + lang);
+  });
+
+  document.querySelectorAll("textarea").forEach(el => {
+    if (lang === "ja" && el.dataset.jaPlaceholder) {
+      el.placeholder = el.dataset.jaPlaceholder;
+    } else if (lang === "en" && el.dataset.enPlaceholder) {
+      el.placeholder = el.dataset.enPlaceholder;
+    }
+  });
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "dark",
+    document.body.classList.contains("dark") ? "1" : "0"
+  );
+}
+
+if (localStorage.getItem("dark") === "1") {
+  document.body.classList.add("dark");
+}
+
+setLang("ja");
+</script>
+
+</body>
+</html>
